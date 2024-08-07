@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard{% endblock %}
+{% block content %}
+<div class="leaderboard">
+    <h2>Leaderboard</h2>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in leaderboard_data %}
+          {% if data.rank < 6 %}
+          <tr>
+            <td>{{ data.rank }}</td>
+            <td>{{ data.username }}</td>
+            <td>{{ data.max_correct_guesses }}</td>
+            <td>{{ data.max_correct_date }}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+<div class="user-history-container">
+    <div class="user-history-title">
+        <h2 class="centered-heading">Recent {{current_user.username}} Draws</h2>
+    </div>
+    <table class="content-table-user">
+        <thead>
+            <tr>
+                <th>Draw Date</th>
+                <th>Guessed Numbers</th>
+                <th>Drawn Numbers</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for draw in recent_draws %}
+            <tr>
+                <td>{{ draw.draw_datetime.strftime('%Y-%m-%d') }}</td>
+                <td class="guessed-numbers-container" data-guessed="{{ draw.numbers_guess }}">
+                  {% set drawn_numbers = draw.numbers_draw.split(',') %}
+                  {% set guessed_numbers = draw.numbers_guess.split(',') %}
+                  {% for number in guessed_numbers %}
+                      <button class="guessNumber-button{% if number in drawn_numbers %}-correct-guess{% endif %}">
+                          {{ number }}
+                      </button>
+                  {% endfor %}
+              </td>
+              <td class="drawn-numbers-container" data-drawn="{{ draw.numbers_draw }}">
+                  {% for draw_number in draw.numbers_draw.split(',') %}
+                  <button class="drawNumber-button">{{ draw_number }}</button>
+                  {% endfor %}
+              </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

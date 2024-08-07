@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+<div class="signup-container">
+    <div class="register-container">
+        <div class="form-box register">
+            <h2>Sign Up</h2>
+            <form method="POST" action="/register">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input 
+                        type="text"
+                        id="username"
+                        name="username"
+                        required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input 
+                        type="email"
+                        id="email"
+                        name="email"
+                        required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input 
+                        type="password"
+                        id="password"
+                        name="password"
+                        required>
+                    <label for="password">Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox"></label>
+                    <a href="#">I agree to the terms & conditions</a>
+                </div>
+                <button type="submit" class="btnLogin">Sign up</button>
+                <div class="login-register">
+                    <p>Already have an account?<a href="/login" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

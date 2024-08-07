@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Lottery Draw{% endblock %}
+{% block content %}
+<div class="draw-main-container">
+    <div class="pool-container">
+        <div class="randomPool-container">
+            <h3 class="LotteryLetters">Lottery Numbers</h3>
+            <div class="lotteryNumber-container">
+                <div class="lotteryNumber"></div>
+                <div class="lotteryNumber"></div>
+                <div class="lotteryNumber"></div>
+                <div class="lotteryNumber"></div>
+                <div class="lotteryNumber"></div>
+            </div>
+            <div class="control_buttons">
+                <form id="drawForm" method="POST" action="/draw">
+                    <input type="hidden" id="selected_numbers" name="selected_numbers">
+                    <input type="hidden" id="lottery_numbers" name="lottery_numbers">
+                    <button id="drawBtn">Draw</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="draw-container" id="button-grid">
+        <div class="background-container">
+            <h1 class="draw-text">{{ "Welcome " ~ current_user.username }}</h1>
+            <div class="square-container">
+                <div class="buttons_container">
+                    <!-- Buttons will be added here by JavaScript -->
+                </div>
+                <div class="controls">
+                    <div class="selected-numbers">
+                        Selected Numbers: <span id="selectedNumbers"></span>
+                    </div>
+                    <div class="control_buttons">
+                        <button id="submitBtn">Submit</button>
+                        <button id="resetBtn">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}
